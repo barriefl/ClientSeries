@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using ClientSeries.Views;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -42,7 +43,14 @@ namespace ClientSeries
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             m_window = new MainWindow();
+            // Create a Frame to act as the navigation context and navigate to the first page
+            Frame rootFrame = new Frame();
+            // Place the frame in the current Window
+            this.m_window.Content = rootFrame;
+            // Ensure the current window is active
             m_window.Activate();
+            // Navigate to the first page
+            rootFrame.Navigate(typeof(SeriesPage));
         }
 
         private Window m_window;
