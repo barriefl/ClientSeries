@@ -32,6 +32,11 @@ public partial class Serie
     [StringLength(50)]
     public string? Network { get; set; }
 
+    public Serie()
+    {
+     
+    }
+
     public Serie(int serieid, string titre, string? resume, int? nbsaisons, int? nbepisodes, int? anneecreation, string? network)
     {
         Serieid = serieid;

@@ -29,60 +29,63 @@ namespace ClientSeries.Services
             {
                 return await client.GetFromJsonAsync<List<Serie>>(nomController);
             }
-            catch (Exception ex) 
+            catch (Exception) 
             {
                 return null;
             }
         }
 
-        public async Task<Serie> GetSerieAsync(string nomController, Serie serie)
+        public async Task<Serie> GetSerieAsync(string nomController, int serieId)
         {
             try
             {
-                return await client.GetFromJsonAsync<Serie>(nomController, serie);
+                string url = string.Concat(nomController, "/", serieId);
+                return await client.GetFromJsonAsync<Serie>(url);
             }
-            catch (Exception ex) 
+            catch (Exception) 
             {
                 return null;
             }
         }
 
-        public async Task<Serie> PutSerieAsync(string nomController, Serie serie)
+        public async Task<bool> PutSerieAsync(string nomController, Serie serie)
         {
             try
             {
-                var reponse = await client.PutAsJsonAsync(nomController, serie);
-                return await reponse.Content.ReadFromJsonAsync<Serie>();
+                string url = string.Concat(nomController, "/", serie.Serieid);
+                var reponse = await client.PutAsJsonAsync(url, serie);
+                return reponse.IsSuccessStatusCode;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return null;
+                return false;
             }
         }
 
-        public async Task<Serie> PostSerieAsync(string nomController, Serie serie)
+        public async Task<bool> PostSerieAsync(string nomController, Serie serie)
         {
             try
             {
                 var reponse = await client.PostAsJsonAsync(nomController, serie);
-                return await reponse.Content.ReadFromJsonAsync<Serie>();
+                return reponse.IsSuccessStatusCode;
             }
-            catch (Exception ex) 
+            catch (Exception) 
             {
-                return null;
+                return false;
             }
         }
 
-        public async Task<Serie> DeleteSerieAsync(string nomController, Serie serie)
+        public async Task<bool> DeleteSerieAsync(string nomController, int serieId)
         {
             try
             {
-                var reponse = await client.DeleteFromJsonAsync(nomController);
-                
+                var url = string.Concat(nomController + "/", serieId);
+                var reponse = await client.DeleteAsync(url);
+                return reponse.IsSuccessStatusCode;
             }
-            catch (Exception ex) 
+            catch (Exception) 
             {
-                return null;
+                return false;
             }
         }
     }
