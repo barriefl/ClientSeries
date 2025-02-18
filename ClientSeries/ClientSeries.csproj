@@ -15,7 +15,8 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Views\SeriesPage.xaml" />
+    <None Remove="Views\AddSeriesPage.xaml" />
+    <None Remove="Views\GetDeleteOrPutSeriesPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,7 +46,12 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\SeriesPage.xaml">
+    <Page Update="Views\GetDeleteOrPutSeriesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\AddSeriesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

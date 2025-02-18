@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="ClientSeries.Views.FindDeleteOrPutSeriesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ClientSeries.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <RelativePanel VerticalAlignment="Center">
+        <TextBlock Name="TextBlockSerieAfficher" Text="Numero de série à afficher" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="10">
+            
+        </TextBlock>
+        <NumberBox Name="NumberBoxSerieAfficher" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockSerieAfficher" Margin="10" Width="50" Text="{Binding NumSerie, Mode=TwoWay}">
+            
+        </NumberBox>
+
+        <Button Name="ButtonRechercher" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="NumberBoxSerieAfficher" Content="Rechercher" Command="{Binding BtnGetSerie}" Margin="25" Width="150">
+            
+        </Button>
+
+        <TextBlock Name="TextBlockTitre" Text="Titre" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="ButtonRechercher">
+
+        </TextBlock>
+        <TextBox Name="TextBoxTitre" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockTitre" Margin="10" Width="500" Text="{Binding Serie.Titre, Mode=TwoWay}">
+
+        </TextBox>
+
+        <TextBlock Name="TextBlockResume" Text="Resume" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBoxTitre" Margin="10">
+
+        </TextBlock>
+        <TextBox Name="TextBoxResume" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockResume" Margin="10" Width="500" Height="150" Text="{Binding Serie.Resume, Mode=TwoWay}">
+
+        </TextBox>
+
+        <TextBlock Name="TextBlockNbSaisons" Text="Nb saisons" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBoxResume" Margin="10">
+
+        </TextBlock>
+        <NumberBox Name="NumberBoxNbSaisons" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockNbSaisons" Margin="10" Width="100" Text="{Binding Serie.Nbsaisons, Mode=TwoWay}">
+
+        </NumberBox>
+
+        <TextBlock Name="TextBlockNbEpisodes" Text="Nb épisodes" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="NumberBoxNbSaisons" Margin="10">
+
+        </TextBlock>
+        <NumberBox Name="NumberBoxNbEpisodes" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockNbEpisodes" Margin="10" Width="100" Text="{Binding Serie.Nbepisodes, Mode=TwoWay}">
+
+        </NumberBox>
+
+        <TextBlock Name="TextBlockAnneeCreation" Text="Année création" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="NumberBoxNbEpisodes" Margin="10">
+
+        </TextBlock>
+        <NumberBox Name="NumberBoxAnneeCreation" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockAnneeCreation" Margin="10" Width="100" Text="{Binding Serie.Anneecreation, Mode=TwoWay}">
+
+        </NumberBox>
+
+        <TextBlock Name="TextBlockChaine" Text="Chaine" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="NumberBoxAnneeCreation" Margin="10">
+
+        </TextBlock>
+        <TextBox Name="TextBoxChaine" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockChaine" Margin="10" Width="200" Text="{Binding Serie.Network, Mode=TwoWay}">
+
+        </TextBox>
+
+        <Grid RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBoxChaine" Margin="25">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Name="ButtonModifier" Content="Modifier" Width="150" Command="{Binding BtnPutSerie}" Grid.Column="0" Margin="0, 0, 10, 0">
+
+            </Button>
+            <Button Name="ButtonSupprimer" Content="Supprimer" Width="150" Command="{Binding BtnDeleteSerie}" Grid.Column="1" Margin="10, 0, 0, 0">
+
+            </Button>
+        </Grid>
+    </RelativePanel>
+</Page>
