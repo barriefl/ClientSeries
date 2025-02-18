@@ -39,7 +39,7 @@ namespace ClientSeries.ViewModels
             service = new WSService("http://localhost:5239/api/");
         }
 
-        private void ActionAddSerie()
+        public void ActionAddSerie()
         {
             if (this.SerieToAdd.Titre == "" || this.SerieToAdd.Titre == null) 
             {
