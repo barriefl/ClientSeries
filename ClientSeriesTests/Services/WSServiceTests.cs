@@ -18,7 +18,7 @@ namespace ClientSeries.Services.Tests
         public void InitialisationDesTests()
         {
             // Rajouter les initialisations exécutées avant chaque test.
-            service = new WSService("https://localhost:7297/api/");
+            service = new WSService("http://localhost:5239/api/");
         }
 
         [TestMethod()]
