@@ -65,7 +65,6 @@ namespace ClientSeries
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             m_window = new MainWindow();
-            MainRoot = m_window.Content as FrameworkElement;
             // Create a Frame to act as the navigation context and navigate to the first page
             Frame rootFrame = new Frame();
             // Place the frame in the current Window
@@ -74,6 +73,7 @@ namespace ClientSeries
             m_window.Activate();
             // Navigate to the first page
             rootFrame.Navigate(typeof(SeriesPage));
+            MainRoot = m_window.Content as FrameworkElement;
         }
 
         private Window m_window;

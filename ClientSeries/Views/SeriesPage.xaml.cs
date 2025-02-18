@@ -1,6 +1,7 @@
 using ClientSeries.Models;
 using ClientSeries.Services;
 using ClientSeries.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -30,8 +31,7 @@ namespace ClientSeries.Views
         public SeriesPage()
         {
             this.InitializeComponent();
-            SeriesViewModel seriesViewModel = new SeriesViewModel();
-            DataContext = seriesViewModel;
+            this.DataContext = App.Current.Services.GetService<SeriesViewModel>();
         }
     }
 }

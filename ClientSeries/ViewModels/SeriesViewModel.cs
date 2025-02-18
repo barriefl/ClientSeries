@@ -1,4 +1,5 @@
 ﻿using ClientSeries.Models;
+using ClientSeries.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
@@ -13,6 +14,8 @@ namespace ClientSeries.ViewModels
     public class SeriesViewModel : ObservableObject
     {
         public IRelayCommand BtnAddSerie { get; }
+        private Serie serieToAdd;
+        private WSService service;
 
         public Serie SerieToAdd
         {
@@ -28,12 +31,12 @@ namespace ClientSeries.ViewModels
             }
         }
 
-        private Serie serieToAdd;
-
+        
         public SeriesViewModel() 
         {
             BtnAddSerie = new RelayCommand(ActionAddSerie);
             SerieToAdd = new Serie();
+            service = new WSService("http://localhost:5239/api/");
         }
 
         private void ActionAddSerie()
@@ -65,6 +68,19 @@ namespace ClientSeries.ViewModels
             else
             {
                 MessageAsync("La série a été ajoutée avec succès !", "Série ajoutée");
+
+                Serie serie = new Serie
+                {
+                    Titre = SerieToAdd.Titre,
+                    Resume = SerieToAdd.Resume,
+                    Nbsaisons = SerieToAdd.Nbsaisons,
+                    Nbepisodes = SerieToAdd.Nbepisodes,
+                    Anneecreation = SerieToAdd.Anneecreation,
+                    Network = SerieToAdd.Network
+                };
+
+
+                service.PostSerieAsync("series", serie);
             }
         }
 
@@ -78,7 +94,7 @@ namespace ClientSeries.ViewModels
             };
 
             errorMessage.XamlRoot = App.MainRoot.XamlRoot;
-            ContentDialogResult result = await errorMessage.ShowAsync();
+            await errorMessage.ShowAsync();
         }
     }
 }

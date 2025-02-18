@@ -13,42 +13,42 @@
         <TextBlock Name="TextBlockTitre" Text="Titre" RelativePanel.AlignHorizontalCenterWithPanel="True">
             
         </TextBlock>
-        <TextBox Name="TextBoxTitre" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockTitre" Margin="10" Width="500" Text="{Binding serieToAdd.Titre, Mode=TwoWay}">
+        <TextBox Name="TextBoxTitre" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockTitre" Margin="10" Width="500" Text="{Binding SerieToAdd.Titre, Mode=TwoWay}">
             
         </TextBox>
 
         <TextBlock Name="TextBlockResume" Text="Resume" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBoxTitre" Margin="10">
             
         </TextBlock>
-        <TextBox Name="TextBoxResume" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockResume" Margin="10" Width="500" Height="150" Text="{Binding serieToAdd.Resume, Mode=TwoWay}">
+        <TextBox Name="TextBoxResume" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockResume" Margin="10" Width="500" Height="150" Text="{Binding SerieToAdd.Resume, Mode=TwoWay}">
             
         </TextBox>
 
         <TextBlock Name="TextBlockNbSaisons" Text="Nb saisons" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBoxResume" Margin="10">
             
         </TextBlock>
-        <NumberBox Name="NumberBoxNbSaisons" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockNbSaisons" Margin="10" Width="100" Text="{Binding serieToAdd.Nbsaisons, Mode=TwoWay}">
+        <NumberBox Name="NumberBoxNbSaisons" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockNbSaisons" Margin="10" Width="100" Text="{Binding SerieToAdd.Nbsaisons, Mode=TwoWay}">
             
         </NumberBox>
 
         <TextBlock Name="TextBlockNbEpisodes" Text="Nb épisodes" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="NumberBoxNbSaisons" Margin="10">
 
         </TextBlock>
-        <NumberBox Name="NumberBoxNbEpisodes" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockNbEpisodes" Margin="10" Width="100" Text="{Binding serieToAdd.Nbepisodes, Mode=TwoWay}">
+        <NumberBox Name="NumberBoxNbEpisodes" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockNbEpisodes" Margin="10" Width="100" Text="{Binding SerieToAdd.Nbepisodes, Mode=TwoWay}">
 
         </NumberBox>
 
         <TextBlock Name="TextBlockAnneeCreation" Text="Année création" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="NumberBoxNbEpisodes" Margin="10">
 
         </TextBlock>
-        <NumberBox Name="NumberBoxAnneeCreation" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockAnneeCreation" Margin="10" Width="100" Text="{Binding serieToAdd.Anneecreation, Mode=TwoWay}">
+        <NumberBox Name="NumberBoxAnneeCreation" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockAnneeCreation" Margin="10" Width="100" Text="{Binding SerieToAdd.Anneecreation, Mode=TwoWay}">
 
         </NumberBox>
 
         <TextBlock Name="TextBlockChaine" Text="Chaine" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="NumberBoxAnneeCreation" Margin="10">
 
         </TextBlock>
-        <TextBox Name="TextBoxChaine" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockChaine" Margin="10" Width="200" Text="{Binding serieToAdd.Network, Mode=TwoWay}">
+        <TextBox Name="TextBoxChaine" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TextBlockChaine" Margin="10" Width="200" Text="{Binding SerieToAdd.Network, Mode=TwoWay}">
 
         </TextBox>
 
