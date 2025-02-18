@@ -79,7 +79,6 @@ namespace ClientSeries.ViewModels
                     Network = SerieToAdd.Network
                 };
 
-
                 service.PostSerieAsync("series", serie);
             }
         }
