@@ -10,7 +10,7 @@ using ClientSeries.Models;
 namespace ClientSeries.ViewModels.Tests
 {
     [TestClass()]
-    public class SeriesViewModelTests
+    public class AddSeriesViewModelTests
     {
         /// <summary>
         /// Test constructeur.
@@ -19,7 +19,7 @@ namespace ClientSeries.ViewModels.Tests
         public void SeriesViewModelTest()
         {
             // Arrange.
-            SeriesViewModel series = new SeriesViewModel();
+            AddSeriesViewModel series = new AddSeriesViewModel();
 
             // Assert.
             Assert.IsNotNull(series);
@@ -33,7 +33,7 @@ namespace ClientSeries.ViewModels.Tests
         {
             // Arrange.
             // Création d'un objet de type SeriesViewModel.
-            SeriesViewModel series = new SeriesViewModel();
+            AddSeriesViewModel series = new AddSeriesViewModel();
             // Properties de SerieToAdd.
             series.SerieToAdd.Titre = "Nicolas, a Magical Girl";
             series.SerieToAdd.Resume = "Nicolas est une femme.";

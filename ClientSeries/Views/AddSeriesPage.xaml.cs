@@ -31,7 +31,7 @@ namespace ClientSeries.Views
         public SeriesPage()
         {
             this.InitializeComponent();
-            this.DataContext = App.Current.Services.GetService<SeriesViewModel>();
+            this.DataContext = App.Current.Services.GetService<AddSeriesViewModel>();
         }
     }
 }

@@ -48,7 +48,8 @@ namespace ClientSeries
             ServiceCollection services = new ServiceCollection();
 
             // ViewModels
-            services.AddTransient<SeriesViewModel>();
+            services.AddTransient<AddSeriesViewModel>();
+            services.AddTransient<GetDeleteOrPutSeriesViewModel>();
 
             Services = services.BuildServiceProvider();
         }

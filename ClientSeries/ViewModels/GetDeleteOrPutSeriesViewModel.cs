@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,7 @@ namespace ClientSeries.ViewModels
 {
     public class GetDeleteOrPutSeriesViewModel : ObservableObject
     {
-        public IRelayCommand BtnGetSerie { get; }
-        public IRelayCommand BtnPutSerie { get; }
-        public IRelayCommand BtnDeleteSerie { get; }
         private Serie serie;
-        private int numSerie;
         private WSService service;
 
         public Serie Serie
@@ -34,65 +31,105 @@ namespace ClientSeries.ViewModels
             }
         }
 
-        public int NumSerie
-        {
-            get
-            {
-                return this.numSerie;
-            }
+        public IRelayCommand BtnGetSerie { get; }
 
-            set
-            {
-                this.numSerie = value;
-                OnPropertyChanged();
-            }
-        }
+        public IRelayCommand BtnPutSerie { get; }
+
+        public IRelayCommand BtnDeleteSerie { get; }
 
         public GetDeleteOrPutSeriesViewModel()
         {
+            GetDataOnLoadAsync();
+
+            Serie = new Serie();
+
             BtnGetSerie = new RelayCommand(ActionGetSerie);
             BtnPutSerie = new RelayCommand(ActionPutSerie);
             BtnDeleteSerie = new RelayCommand(ActionDeleteSerie);
-            Serie = new Serie();
-            service = new WSService("http://localhost:5239/api/");
         }
 
-        public void ActionGetSerie()
+        public async void GetDataOnLoadAsync()
         {
-            var resultat = service.GetSerieAsync("series", this.NumSerie);
-
-            this.Serie.Titre = resultat.Result.Titre;
+            service = new WSService("https://localhost:7297/api/");
+            List<Serie> result = await service.GetSeriesAsync("series");
+            if (result == null)
+            {
+                MessageAsync("API non disponible !", "Erreur");
+            }
         }
 
-        public void ActionPutSerie() 
+        public async void ActionGetSerie()
         {
-            
+            var resultat = await service.GetSerieAsync("series", this.Serie.Serieid);
+
+            if (resultat == null) 
+            {
+                MessageAsync("La série n'existe pas.", "Erreur");
+            }
+            else
+            {
+                this.Serie = new Serie
+                {
+                    Serieid = resultat.Serieid,
+                    Titre = resultat.Titre,
+                    Resume = resultat.Resume,
+                    Nbsaisons = resultat.Nbsaisons,
+                    Nbepisodes = resultat.Nbepisodes,
+                    Anneecreation = resultat.Anneecreation,
+                    Network = resultat.Network
+                };
+
+                MessageAsync("Série trouvée !", "Notification");
+            }    
         }
 
-        public void ActionDeleteSerie()
+        public async void ActionPutSerie() 
         {
+            if (string.IsNullOrEmpty(this.Serie.Titre) || string.IsNullOrEmpty(this.Serie.Resume) || this.Serie.Nbsaisons == 0 || this.Serie.Nbepisodes == 0 || this.Serie.Anneecreation == 0 || string.IsNullOrEmpty(this.Serie.Network))
+            {
+                MessageAsync("Veuillez rechercher une série.", "Erreur");
+            }
+            else
+            {
+                bool updated = await service.PutSerieAsync("series", this.Serie);
 
+                if (updated)
+                {
+                    var result = await service.GetSerieAsync("series", this.Serie.Serieid);
+
+                    if (result != null)
+                    {
+                        this.Serie = result;
+
+                        MessageAsync("Série modifiée avec succès !", "Notification");
+                    }
+                    else
+                    {
+                        MessageAsync("Erreur lors de la récupération de la série.", "Erreur");
+                    }
+                }
+                else
+                {
+                    MessageAsync("Erreur lors de la mise à jour de la série.", "Erreur");
+                }
+            }
         }
 
-        //public void ActionAddSerie()
-        //{
-        //    if ()
-        //    {
-        //        MessageAsync("La série a été ajoutée avec succès !", "Série ajoutée");
+        public async void ActionDeleteSerie()
+        {
+            if (string.IsNullOrEmpty(this.Serie.Titre) || string.IsNullOrEmpty(this.Serie.Resume) || this.Serie.Nbsaisons == 0 || this.Serie.Nbepisodes == 0 || this.Serie.Anneecreation == 0 || string.IsNullOrEmpty(this.Serie.Network))
+            {
+                MessageAsync("Veuillez rechercher une série.", "Erreur");
+            }
+            else
+            {
+                await service.DeleteSerieAsync("series", this.Serie.Serieid);
 
-        //        Serie serie = new Serie
-        //        {
-        //            Titre = SerieToAdd.Titre,
-        //            Resume = SerieToAdd.Resume,
-        //            Nbsaisons = SerieToAdd.Nbsaisons,
-        //            Nbepisodes = SerieToAdd.Nbepisodes,
-        //            Anneecreation = SerieToAdd.Anneecreation,
-        //            Network = SerieToAdd.Network
-        //        };
+                this.Serie = new Serie { };
 
-        //        service.PostSerieAsync("series", serie);
-        //    }
-        //}
+                MessageAsync("Série supprimée avec succès !", "Notification");
+            }
+        }
 
         private async void MessageAsync(string content, string title)
         {

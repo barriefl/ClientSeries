@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ClientSeries.ViewModels
 {
-    public class SeriesViewModel : ObservableObject
+    public class AddSeriesViewModel : ObservableObject
     {
         public IRelayCommand BtnAddSerie { get; }
         private Serie serieToAdd;
@@ -32,11 +32,11 @@ namespace ClientSeries.ViewModels
         }
 
         
-        public SeriesViewModel() 
+        public AddSeriesViewModel() 
         {
             BtnAddSerie = new RelayCommand(ActionAddSerie);
             SerieToAdd = new Serie();
-            service = new WSService("http://localhost:5239/api/");
+            service = new WSService("https://localhost:7297/api/");
         }
 
         public void ActionAddSerie()

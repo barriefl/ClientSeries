@@ -18,7 +18,7 @@ namespace ClientSeries.Services.Tests
         public void InitialisationDesTests()
         {
             // Rajouter les initialisations exécutées avant chaque test.
-            service = new WSService("http://localhost:5239/api/");
+            service = new WSService("https://localhost:7297/api/");
         }
 
         [TestMethod()]
@@ -89,7 +89,7 @@ namespace ClientSeries.Services.Tests
             var resultat = service.PutSerieAsync("series", serie);
 
             // Assert.
-            Assert.IsFalse(resultat.Result, "La série n'a pas bien été modifiée.");
+            Assert.IsFalse(resultat.Result, "La série a été modifiée.");
         }
 
         [TestMethod()]
