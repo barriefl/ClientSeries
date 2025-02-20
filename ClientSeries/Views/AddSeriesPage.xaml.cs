@@ -26,12 +26,30 @@ namespace ClientSeries.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SeriesPage : Page
+    public sealed partial class AddSeriesPage : Page
     {
-        public SeriesPage()
+        public AddSeriesPage()
         {
             this.InitializeComponent();
             this.DataContext = App.Current.Services.GetService<AddSeriesViewModel>();
+        }
+
+        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            var selectedItem = args.SelectedItem as NavigationViewItem;
+            if (selectedItem != null)
+            {
+                string tag = selectedItem.Tag.ToString();
+                switch (tag)
+                {
+                    case "Add":
+                        ContentFrame.Navigate(typeof(AddSeriesPage));
+                        break;
+                    case "PutOrDelete":
+                        ContentFrame.Navigate(typeof(GetDeleteOrPutSeriesPage));
+                        break;
+                }
+            }
         }
     }
 }

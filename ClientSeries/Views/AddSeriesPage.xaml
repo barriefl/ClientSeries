@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="ClientSeries.Views.SeriesPage"
+    x:Class="ClientSeries.Views.AddSeriesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ClientSeries.Views"
@@ -10,6 +10,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <RelativePanel VerticalAlignment="Center">
+        <NavigationView PaneDisplayMode="Top" SelectionChanged="NavigationView_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Ajouter" Tag="Add"/>
+                <NavigationViewItem Content="Modifier / Supprimer" Tag="PutOrDelete"/>
+            </NavigationView.MenuItems>
+
+            <Frame Name="ContentFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </NavigationView>
+
         <TextBlock Name="TextBlockTitre" Text="Titre" RelativePanel.AlignHorizontalCenterWithPanel="True">
             
         </TextBlock>

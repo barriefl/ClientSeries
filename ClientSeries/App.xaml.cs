@@ -73,7 +73,7 @@ namespace ClientSeries
             // Ensure the current window is active
             m_window.Activate();
             // Navigate to the first page
-            rootFrame.Navigate(typeof(FindDeleteOrPutSeriesPage));
+            rootFrame.Navigate(typeof(GetDeleteOrPutSeriesPage));
             MainRoot = m_window.Content as FrameworkElement;
         }
 
